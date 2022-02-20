@@ -25,6 +25,10 @@ export default {
 
 <style scoped>
 #home {
-  height: 100vh;
+  min-height: 100vh !important;
+}
+
+.sidebar-main-content {
+  min-height: 100vh;
 }
 </style>

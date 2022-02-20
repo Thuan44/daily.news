@@ -41,7 +41,7 @@ export default {};
   padding: 0;
   width: 200px;
   border-right: 1px solid rgba(168, 179, 207, 0.2);
-  height: 100vh;
+  height: 100%;
   overflow: auto;
   padding: 40px 20px;
   text-align: left;

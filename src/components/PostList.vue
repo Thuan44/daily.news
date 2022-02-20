@@ -3,7 +3,7 @@
     <div class="wrapper">
       <h5 class="mb-4">My feed</h5>
 
-      <div class="row justify-content-between align-items-center">
+      <div class="grid gap-8 grid-cols">
         <div class="card text-left">
           <h5 class="card-title">
             Regex library - A curated list of most commonly used regular
@@ -71,8 +71,8 @@ export default {};
 
 <style scoped>
 .wrapper {
-  padding: 40px 0;
-  /* max-width: 1376px; */
+  padding: 40px 60px;
+  max-width: 1376px;
   margin: 0 auto;
 }
 
@@ -81,8 +81,16 @@ h5 {
   font-weight: 600;
 }
 
-.row {
-  gap: 30px;
+.grid {
+  display: grid;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.grid-cols {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .card {
@@ -120,43 +128,30 @@ h5 {
 }
 
 /* Media queries */
-@media only screen and (min-width: 1668px) {
+@media screen and (max-width: 1570px) {
   .wrapper {
-    max-width: 1376px;
+    max-width: 1050px;
+  }
+  .grid-cols {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-@media only screen and (max-width: 1668px) {
+@media screen and (max-width: 1250px) {
   .wrapper {
-    width: 80%;
+    max-width: 720px;
+  }
+  .grid-cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media only screen and (max-width: 1440px) {
+@media screen and (max-width: 968px) {
   .wrapper {
-    width: 90%;
+    max-width: 400px;
   }
-}
-
-@media only screen and (max-width: 1360px) {
-  .wrapper {
-    width: 60%;
-  }
-}
-
-@media only screen and (max-width: 1270px) {
-  .wrapper {
-    width: 70%;
-  }
-}
-
-@media only screen and (max-width: 1020px) {
-  .wrapper {
-    width: 80%;
-  }
-
-  .card {
-    margin: 0 auto;
+  .grid-cols {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
 </style>
