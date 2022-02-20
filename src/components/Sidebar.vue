@@ -61,7 +61,7 @@ h5 {
   font-size: 0.8rem;
   height: 30px;
   background: #0d1217;
-  border: 1px solid rgba(168, 179, 207, 0.2);
+  border: 1px solid #41b88377;
   transition: ease-in-out 0.2s;
 }
 
