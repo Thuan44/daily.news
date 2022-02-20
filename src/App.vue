@@ -1,6 +1,6 @@
 
 <template>
-  <img alt="Vue logo" src="./assets/logo_large.png" />
+  <router-view></router-view>
 </template>
 
 <script>
@@ -12,8 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #fff;
 }
 
 body {
