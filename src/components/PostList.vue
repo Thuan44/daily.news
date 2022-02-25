@@ -4,77 +4,61 @@
       <h5 class="mb-4">My feed</h5>
 
       <div class="grid gap-8 grid-cols">
-        <div class="card text-left">
+        <a
+          class="card text-left text-decoration-none"
+          v-for="news in allNews"
+          :key="news.title"
+          :href="news.url"
+        >
           <h5 class="card-title">
-            Regex library - A curated list of most commonly used regular
-            expressions
+            {{ news.title.substring(0, 70) + "..." }}
           </h5>
           <p class="posting-date">
-            <small class="text-muted">Last updated 3 mins ago</small>
+            <small class="text-muted"
+              >Publié le : {{ news.publishedAt.substring(0, 10) }}</small
+            >
           </p>
           <div class="post-img-container">
             <img
-              src="@/assets/img.png"
-              class="card-img-top w-100 post-img"
+              :src="news.urlToImage ?? 'https://picsum.photos/228/150'"
+              class="card-img-top h-100 w-100 post-img"
               alt="Post image"
             />
           </div>
-        </div>
-        <div class="card text-left">
-          <h5 class="card-title">
-            Regex library - A curated list of most commonly used regular
-            expressions
-          </h5>
-          <p class="posting-date">
-            <small class="text-muted">Last updated 3 mins ago</small>
+          <p class="source mb-0 mt-2">
+            <small class="text-muted">Source : {{ news.source.name }}</small>
           </p>
-          <div class="post-img-container">
-            <img
-              src="@/assets/img.png"
-              class="card-img-top w-100 post-img"
-              alt="Post image"
-            />
-          </div>
-        </div>
-        <div class="card text-left">
-          <h5 class="card-title">
-            Regex library - A curated list of most commonly used regular
-            expressions
-          </h5>
-          <p class="posting-date">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </p>
-          <div class="post-img-container">
-            <img
-              src="@/assets/img.png"
-              class="card-img-top w-100 post-img"
-              alt="Post image"
-            />
-          </div>
-        </div>
-        <div class="card text-left">
-          <h5 class="card-title">
-            Regex library - A curated list of most commonly used regular
-            expressions
-          </h5>
-          <p class="posting-date">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </p>
-          <div class="post-img-container">
-            <img
-              src="@/assets/img.png"
-              class="card-img-top w-100 post-img"
-              alt="Post image"
-            />
-          </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { ref } from "vue";
+import axios from "axios";
+import moment from "moment";
+
+export default {
+  name: "PostList",
+  setup() {
+    const newsApiUrl =
+      import.meta.env.VITE_NEWS_API + import.meta.env.VITE_NEWS_API_KEY;
+    const allNews = ref([]);
+
+    axios
+      .get(newsApiUrl)
+      .then((response) => {
+        allNews.value = response.data.articles;
+        console.log(allNews.value);
+      })
+      .catch((error) => {
+        console.log("There was an error : ", error.response);
+      });
+
+    return { allNews, moment };
+  },
+};
 </script>
 
 <style scoped>
@@ -105,7 +89,7 @@ h5 {
   background: #292b31;
   border-radius: 15px;
   border: 1px solid rgba(168, 179, 207, 0.2);
-  padding: 30px 30px;
+  padding: 20px;
   min-width: 287px;
   max-width: 318px;
   height: 364px;
@@ -121,17 +105,23 @@ h5 {
   cursor: pointer;
 }
 
+.card-title {
+  font-size: 1.1rem;
+  color: #fff;
+}
+
 .posting-date {
   text-align: left;
 }
 
 .post-img-container {
-  width: 100%;
+  height: 170px;
   margin: 0 auto;
 }
 
 .post-img {
   border-radius: 15px;
+  object-fit: cover;
 }
 
 /* Media queries */

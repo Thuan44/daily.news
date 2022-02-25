@@ -15,11 +15,13 @@
 import Navbar from "@/components/Navbar.vue";
 import Sidebar from "@/components/Sidebar.vue";
 import PostList from "@/components/PostList.vue";
+
 export default {
+  name: "Home",
+  components: { Navbar, Sidebar, PostList },
   setup() {
     return {};
   },
-  components: { Navbar, Sidebar, PostList },
 };
 </script>
 
