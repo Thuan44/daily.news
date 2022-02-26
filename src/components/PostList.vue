@@ -42,8 +42,11 @@ import moment from "moment";
 export default {
   name: "PostList",
   setup() {
+    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
     const newsApiUrl =
-      import.meta.env.VITE_NEWS_API + import.meta.env.VITE_NEWS_API_KEY;
+      proxyUrl +
+      import.meta.env.VITE_NEWS_API +
+      import.meta.env.VITE_NEWS_API_KEY;
     const allNews = ref([]);
 
     axios
